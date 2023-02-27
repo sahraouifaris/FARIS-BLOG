@@ -1,0 +1,99 @@
+<div class="container-fluid g-0 "style="background-color:#f4eab4;">
+ <app-header></app-header>
+
+  <main class="black-borde">
+    <div class="toolbar">
+
+        <button type="button" class="btn btn-warning btn-lg my-3  mx-2  " style="float: right; " data-bs-toggle="modal"
+          data-bs-target="#exampleModal" #addEmployeeButton>Crear publicación</button></div>
+<br><br><br>
+
+    <div class="employees" *ngIf="news.length==0">
+
+      <div class="row mt-5" >
+        <div class="col text-center" >
+          <span class="text-secondary fs-2 fw-bold fst-italic">There are No News Added!</span>
+        </div>
+      </div>
+    </div>
+    <div class="row mx-auto w-75 border p-4 rounded-3 my-2" style="background-color:white;" *ngFor="let item of news">
+
+    
+      <div class="col-8">
+        <span class="badge bg-success px-2 py-1 shadow-1-strong mb-3">Hot News</span>
+        <h4><strong>{{item.title}}</strong></h4>
+        <p class="text-muted">
+  {{item.body}}
+        </p>
+        {{item.publishDate|date}}
+      </div>
+      <div class="col-4">
+        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-2" data-mdb-ripple-color="light">
+          <img [src]="item.image" class="rounded-2" style="width:300px;height:300px;" />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  </main>
+</div>
+
+
+<div class="modal fade" #exampleModal id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear publicación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="NewsForm">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Título</label>
+            <input type="text" formControlName="title" class="form-control" id="recipient-name">
+          </div>
+          <div *ngIf="NewsForm.controls['title'].invalid && (NewsForm.controls['title'].dirty || NewsForm.controls['title'].touched)|| submitted ==false" >
+            <div *ngIf="NewsForm.controls['title'].errors " class="alert alert-danger">
+              Título is required.
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Texto</label>
+            <textarea class="form-control" formControlName="body" id="message-text"></textarea>
+          </div>
+          <div *ngIf="NewsForm.controls['body'].invalid && (NewsForm.controls['body'].dirty || NewsForm.controls['body'].touched) || submitted ==false ">
+            <div  class="alert alert-danger" *ngIf="NewsForm.controls['body'].errors">
+              body is required.
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Fecha de la publicación</label>
+            <input type="date" class="form-control" formControlName="publishDate" id="recipient-name">
+          </div>
+          <div *ngIf="NewsForm.controls['publishDate'].invalid && (NewsForm.controls['publishDate'].dirty || NewsForm.controls['publishDate'].touched)|| submitted ==false">
+            <div   class="alert alert-danger" *ngIf="NewsForm.controls['publishDate'].errors">
+              Fecha de la publicación is required.
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Imagen (URL)</label>
+            <input type="text" class="form-control" formControlName="image" id="recipient-name">
+          </div>
+          <div *ngIf="NewsForm.controls['image'].invalid && (NewsForm.controls['image'].dirty || NewsForm.controls['image'].touched)" class="alert alert-danger">
+            <div *ngIf="NewsForm.controls['image'].errors">
+              Imagen (URL) is required.
+          </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="addNews()" >Crear </button>
+      </div>
+    </div>
+  </div>
+</div>
+

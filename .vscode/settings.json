@@ -1,0 +1,17 @@
+{
+    "github.gitAuthentication": false,
+    "html.autoClosingTags": true,
+    "html.autoCreateQuotes": true,
+    "git.useForcePushWithLease": false,
+    "git.autoRepositoryDetection": false,
+    "git.confirmEmptyCommits": false,
+    "git.confirmSync": false,
+    "git.decorations.enabled": false,
+    "git.detectSubmodules": false,
+    "git.autorefresh": false,
+    "git.enabled": false,
+    "git.openDiffOnClick": false,
+    "git.pullTags": false,
+    "git.requireGitUserConfig": false,
+    "git.showCommitInput": false
+}
